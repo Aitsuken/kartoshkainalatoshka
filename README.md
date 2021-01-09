@@ -10,6 +10,6 @@ https://youtu.be/tkrctGH_xKw
 
 ### Screenshots:
 ###### Game Menu
-
+screenshots/scr1.PNG
 
 ###### Ruslan Agai singing damedane
