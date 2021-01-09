@@ -21,6 +21,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -44,16 +45,15 @@ public class Main extends Application {
     static Pane root = new Pane();
     static Scene scene = new Scene(root, width, height, Color.WHITE);
     private Menu menu;
+    Random random = new Random();
 
-    public enum STATE{
-        MENU,
-        GAME
-    };
-    private STATE State = STATE.MENU;
+    MediaView geemuSongu = new MediaView();
     @Override
     public void start(Stage primaryStage) throws Exception{
-        File lexicon = new File("tempfile.txt");
-        //lexicon.createNewFile();
+
+
+/*        File lexicon = new File("tempfile.txt");
+        lexicon.createNewFile();
 
         Path path1 = Paths.get("./src/words.txt");
 
@@ -62,9 +62,9 @@ public class Main extends Application {
         File copyOfDict = new File("./src/wordsCopy.txt");
 
         FileReader read = new FileReader("./src/words.txt");
-        //String line = Files.readAllLines(path1).get(2);
-        int words = 20000;
-        Random random = new Random();
+        String line = Files.readAllLines(path1).get(2);
+        int words = 20000;*/
+
 
 
 
@@ -76,8 +76,6 @@ public class Main extends Application {
         view.setPreserveRatio(true);
 
         menu = new Menu();
-
-
 
 
 
@@ -113,12 +111,22 @@ public class Main extends Application {
         ft.play();
 
     }
+    public int pickSong(){
+        int randomized = 1 + random.nextInt(4);
+        return randomized;
+
+    }
     public static void gameScene(){
         Pane root1 = new Pane();
-        Label label = new Label("words");
+/*        Label label = new Label("words");
+        label.setFont(new Font("Times New Roman", 28));*/
 
+        Media video = new Media(new File("src/Damero.mp4").toURI().toString());
+        MediaPlayer player1 = new MediaPlayer(video);
+        player1.play();
+        MediaView viewik = new MediaView(player1);
         root1.setPrefSize(width, height);
-        root1.getChildren().addAll(label);
+        root1.getChildren().addAll(viewik);
         scene.setRoot(root1);
 
 
@@ -188,11 +196,6 @@ public class Main extends Application {
 
                 Main.fade(view);
                 Main.gameScene();
-/*                FadeTransition ft = new FadeTransition(Duration.seconds(0.5), view);
-                ft.setFromValue(1);
-                ft.setToValue(0);
-                ft.setOnFinished(evt -> view.setVisible(false));
-                ft.play();*/
 
                     });
 
