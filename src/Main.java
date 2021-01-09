@@ -32,22 +32,28 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
+import java.util.TimerTask;
 
 public class Main extends Application {
     public static final int width = 1280;
     public static final int height = 720;
 
-    static Stage primaryStage;
+
     Image background = new Image("/img/menu.png");
     ImageView view = new ImageView();
     static Pane root = new Pane();
     static Scene scene = new Scene(root, width, height, Color.WHITE);
     private Menu menu;
 
+    public enum STATE{
+        MENU,
+        GAME
+    };
+    private STATE State = STATE.MENU;
     @Override
     public void start(Stage primaryStage) throws Exception{
         File lexicon = new File("tempfile.txt");
-        lexicon.createNewFile();
+        //lexicon.createNewFile();
 
         Path path1 = Paths.get("./src/words.txt");
 
@@ -56,11 +62,9 @@ public class Main extends Application {
         File copyOfDict = new File("./src/wordsCopy.txt");
 
         FileReader read = new FileReader("./src/words.txt");
-        String line = Files.readAllLines(path1).get(2);
-        System.out.println(line);
+        //String line = Files.readAllLines(path1).get(2);
         int words = 20000;
         Random random = new Random();
-
 
 
 
@@ -112,11 +116,11 @@ public class Main extends Application {
     public static void gameScene(){
         Pane root1 = new Pane();
         Label label = new Label("words");
+
         root1.setPrefSize(width, height);
         root1.getChildren().addAll(label);
         scene.setRoot(root1);
-        primaryStage.setScene(scene);
-        System.out.println("Hello World!");
+
 
     }
 
